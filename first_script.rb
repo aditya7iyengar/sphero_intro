@@ -36,24 +36,26 @@ end
 def command_sphero
   char = read_char
 
-  Sphero.start '/dev/tty.Sphero-WRO-AMP-SPP' do
+  # Sphero.start '/dev/tty.Sphero-WRO-AMP-SPP' do
     case char
     when "\e[A"
-      #puts "UP ARROW"
-      roll_front
+      puts "UP ARROW"
+      # roll_front
     when "\e[B"
-      #puts "DOWN ARROW"
-      roll_back
+      puts "DOWN ARROW"
+      # roll_back
     when "\e[C"
-      #puts "RIGHT ARROW"
-      roll_right
+      puts "RIGHT ARROW"
+      # roll_right
     when "\e[D"
-      #puts "LEFT ARROW"
-      roll_left
+      puts "LEFT ARROW"
+      # roll_left
+    when "\u0003"
+      abort "RECEIVED INTERRUPT"
     else
-      puts "NO COMMAND REGSTERED FOR: #{c.inspect}"
+      puts "NO COMMAND REGSTERED FOR: #{char.inspect}"
     end
-  end
+  # end
 end
 
 command_sphero while(true)
