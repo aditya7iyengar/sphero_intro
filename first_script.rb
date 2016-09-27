@@ -2,19 +2,31 @@ require "Sphero"
 require 'io/console'
 
 def roll_right
-  roll 25, 270
+  Sphero.start '/dev/tty.Sphero-WRO-AMP-SPP' do
+    roll 100, 90
+    keep_going 1
+  end
 end
 
 def roll_left
-  roll 25, 90
+  Sphero.start '/dev/tty.Sphero-WRO-AMP-SPP' do
+    roll 100, 270
+    keep_going 1
+  end
 end
 
 def roll_front
-  roll 25, 0
+  Sphero.start '/dev/tty.Sphero-WRO-AMP-SPP' do
+    roll 100, 0
+    keep_going 1
+  end
 end
 
 def roll_back
-  roll 25, 180
+  Sphero.start '/dev/tty.Sphero-WRO-AMP-SPP' do
+    roll 100, 180
+    keep_going 1
+  end
 end
 
 def read_char
@@ -34,28 +46,29 @@ ensure
 end
 
 def command_sphero
+  puts 'INPUT:'
   char = read_char
 
-  Sphero.start '/dev/tty.Sphero-WRO-AMP-SPP' do
-    case char
-    when "\e[A"
-      puts "UP ARROW"
-      roll_front
-    when "\e[B"
-      puts "DOWN ARROW"
-      roll_back
-    when "\e[C"
-      puts "RIGHT ARROW"
-      roll_right
-    when "\e[D"
-      puts "LEFT ARROW"
-      roll_left
-    when "\u0003"
-      abort "RECEIVED INTERRUPT"
-    else
-      puts "NO COMMAND REGSTERED FOR: #{char.inspect}"
-    end
+  # Sphero.start '/dev/tty.Sphero-WRO-AMP-SPP' do
+  case char
+  when "\e[A"
+    puts "UP ARROW"
+    roll_front
+  when "\e[B"
+    puts "DOWN ARROW"
+    roll_back
+  when "\e[C"
+    puts "RIGHT ARROW"
+    roll_right
+  when "\e[D"
+    puts "LEFT ARROW"
+    roll_left
+  when "\u0003"
+    abort "RECEIVED INTERRUPT"
+  else
+    puts "NO COMMAND REGSTERED FOR: #{char.inspect}"
   end
+  # end
 end
 
 command_sphero while(true)
