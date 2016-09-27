@@ -3,28 +3,28 @@ require 'io/console'
 
 def roll_right
   Sphero.start '/dev/tty.Sphero-WRO-AMP-SPP' do
-    roll 100, 90
+    roll 20, 90
     keep_going 1
   end
 end
 
 def roll_left
   Sphero.start '/dev/tty.Sphero-WRO-AMP-SPP' do
-    roll 100, 270
+    roll 20, 270
     keep_going 1
   end
 end
 
 def roll_front
   Sphero.start '/dev/tty.Sphero-WRO-AMP-SPP' do
-    roll 100, 0
+    roll 20, 0
     keep_going 1
   end
 end
 
 def roll_back
   Sphero.start '/dev/tty.Sphero-WRO-AMP-SPP' do
-    roll 100, 180
+    roll 20, 180
     keep_going 1
   end
 end
