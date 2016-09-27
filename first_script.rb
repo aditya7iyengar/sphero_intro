@@ -3,7 +3,7 @@ require 'io/console'
 
 def roll_right
   Sphero.start '/dev/tty.Sphero-WRO-AMP-SPP' do
-    roll 20, 90
+    roll 300, 90
     keep_going 1
   end
 end
